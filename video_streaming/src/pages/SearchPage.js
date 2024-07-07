@@ -1,9 +1,56 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Card from "../components/Card";
 
 const SearchPage = () => {
   const location = useLocation();
-  console.log("location", location);
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const navigate = useNavigate();
+
+  const query = location?.search?.slice(3);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`search/multi`, {
+        params: {
+          query: location?.search?.slice(3),
+          page: page,
+        },
+      });
+      setData((preve) => {
+        return [...preve, ...response.data.results];
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  useEffect(() => {
+    if (query) {
+      setPage(1);
+      setData([]);
+      fetchData();
+    }
+  }, [location?.search]);
+
+  const handleScroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      setPage((preve) => preve + 1);
+    }
+  };
+
+  useEffect(() => {
+    if (query) {
+      fetchData();
+    }
+  }, [page]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="py-16">
       <div className="lg:hidden my-2 mx-1 sticky top-[70px] z-30">
