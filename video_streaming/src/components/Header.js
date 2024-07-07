@@ -6,9 +6,9 @@ import { IoSearchOutline } from "react-icons/io5";
 import { navigation } from "../contants/navigation";
 
 const Header = () => {
+  const [searchInput, setSearchInput] = useState(removeSpace);
   const location = useLocation();
   const removeSpace = location?.search?.slice(3)?.split("%20")?.join(" ");
-  const [searchInput, setSearchInput] = useState(removeSpace);
   const navigate = useNavigate();
 
   useEffect(() => {
