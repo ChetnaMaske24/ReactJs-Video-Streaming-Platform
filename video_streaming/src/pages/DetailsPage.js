@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
 
 const DetailsPage = () => {
   return (
-    <div>
-      DetailsPage
+    <div className="w-full h-[280px] relative hidden lg:block">
+      <div className="w-full h-full">
+        <img
+          src={imageURL + data?.backdrop_path}
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="absolute w-full h-full top-0 bg-gradient-to-t from-neutral-900/90 to-transparent"></div>
     </div>
-  )
-}
+  );
+};
 
-export default DetailsPage
+export default DetailsPage;
