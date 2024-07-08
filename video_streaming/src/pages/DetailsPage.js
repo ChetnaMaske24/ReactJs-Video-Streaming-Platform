@@ -5,6 +5,7 @@ import useFetchDetails from "../hooks/useFetchDetails";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import Divider from "../components/Divider";
+import HorizontalScollCard from "../components/HorizontalScollCard";
 import VideoPlay from "../components/VideoPlay";
 
 const DetailsPage = () => {
@@ -102,6 +103,19 @@ const DetailsPage = () => {
             <Divider />
           </div>
 
+          <div>
+            <p>
+              <span className="text-white">Director</span> :{" "}
+              {castData?.crew[0]?.name}
+            </p>
+
+            <Divider />
+
+            <p>
+              <span className="text-white">Writer : {writer}</span>
+            </p>
+          </div>
+
           <Divider />
 
           <h2 className="font-bold text-lg">Cast :</h2>
@@ -125,6 +139,19 @@ const DetailsPage = () => {
               })}
           </div>
         </div>
+      </div>
+
+      <div>
+        <HorizontalScollCard
+          data={similarData}
+          heading={"Similar " + params?.explore}
+          media_type={params?.explore}
+        />
+        <HorizontalScollCard
+          data={recommendationData}
+          heading={"Recommendation " + params?.explore}
+          media_type={params?.explore}
+        />
       </div>
 
       {playVideo && (
