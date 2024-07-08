@@ -1,4 +1,5 @@
 import React from "react";
+import Divider from "../components/Divider";
 
 const DetailsPage = () => {
   return (
@@ -10,6 +11,7 @@ const DetailsPage = () => {
         />
       </div>
       <div className="absolute w-full h-full top-0 bg-gradient-to-t from-neutral-900/90 to-transparent"></div>
+      <Divider />
     </div>
   );
 };
